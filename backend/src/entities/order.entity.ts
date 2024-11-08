@@ -1,9 +1,18 @@
-export class CreateOrderDto {
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity({ name: 'orders' })
+export class Order {
+  @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
   email: string;
+
+  @Column()
   phone: string;
+
+  @Column('jsonb', { array: true })
   tickets: {
-    id: number;
     film: string;
     session: string;
     daytime: string;

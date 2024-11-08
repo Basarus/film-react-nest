@@ -133,10 +133,11 @@ export class FilmAPI extends Api implements IFilmAPI {
      * @param id
      */
     async getFilmSchedule(id: string): Promise<Session[]> {
-        const data = await this._get<ApiListResponse<Session>>(
+        const data = await this._get<Session[]>(
             `/films/${id}/schedule`
         );
-        return data.items.map((schedule) => {
+        console.log(data)
+        return data.map((schedule) => {
             const daytime = dayjs(schedule.daytime);
             return {
                 ...schedule,
@@ -151,8 +152,8 @@ export class FilmAPI extends Api implements IFilmAPI {
      * Получить список фильмов
      */
     async getFilms(): Promise<Movie[]> {
-        const data = await this._get<ApiListResponse<Movie>>('/films');
-        return data.items.map((item) => ({
+        const data = await this._get<Movie[]>('/films');
+        return data.map((item) => ({
             ...item,
             image: this.cdn + item.image,
             cover: this.cdn + item.cover,
@@ -167,11 +168,11 @@ export class FilmAPI extends Api implements IFilmAPI {
      * @param order.phone - телефон пользователя
      */
     async orderTickets(order: Order): Promise<OrderResult[]> {
-        const data = await this._post<ApiListResponse<OrderResult>>(
+        const data = await this._post<OrderResult[]>(
             '/order',
             order
         );
-        return data.items.map((ticket) => {
+        return data.map((ticket) => {
             const daytime = dayjs(ticket.daytime);
             return {
                 ...ticket,
