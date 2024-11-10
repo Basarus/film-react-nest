@@ -14,7 +14,11 @@ export class FilmsRepository {
   ) {}
 
   async findAll(): Promise<Film[]> {
-    return this.filmRepository.find({ relations: ['schedules'] });
+    try {
+      return this.filmRepository.find({ relations: ['schedules'] });
+    } catch (error) {
+      return [];
+    }
   }
 
   async findById(id: string): Promise<Film> {

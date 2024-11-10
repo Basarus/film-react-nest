@@ -6,7 +6,6 @@ export class FilmsService {
   constructor(private readonly filmsRepository: FilmsRepository) {}
 
   async getAllFilms(): Promise<FilmDto[]> {
-    console.log(await this.filmsRepository.findAll());
     return await this.filmsRepository.findAll();
   }
 

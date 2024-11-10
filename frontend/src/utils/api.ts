@@ -136,7 +136,6 @@ export class FilmAPI extends Api implements IFilmAPI {
         const data = await this._get<Session[]>(
             `/films/${id}/schedule`
         );
-        console.log(data)
         return data.map((schedule) => {
             const daytime = dayjs(schedule.daytime);
             return {
