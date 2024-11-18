@@ -15,6 +15,8 @@ const flow : Record<Modals, { next: Modals | null, prev: Modals | null }> = {
 export function useAppState() {
     const [state, dispatch] = useReducer<Reducer<AppState, Actions>>(appReducer, initialState);
 
+    console.log(CDN_URL, API_URL)
+
     const api = useRef<IFilmAPI>(new FilmAPI(
         CDN_URL,
         API_URL

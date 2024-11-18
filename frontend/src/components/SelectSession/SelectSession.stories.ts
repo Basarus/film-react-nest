@@ -18,6 +18,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    selected: '1',
     sessions: [
         {
             id: '1',
