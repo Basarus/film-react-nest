@@ -3,6 +3,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      image: ghcr.io/basarus/film-react-nest/backend:latest
     container_name: backend
     depends_on:
       - postgres
@@ -16,6 +17,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      image: ghcr.io/basarus/film-react-nest/frontend:latest
     container_name: frontend
     networks:
       - internal
