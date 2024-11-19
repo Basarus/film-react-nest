@@ -1,4 +1,4 @@
-FROM node:20-alpine AS build
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -10,12 +10,13 @@ COPY . .
 
 RUN npm run build
 
-FROM node:20-alpine
+FROM node:20-alpine AS production
 
 WORKDIR /app
 
-COPY --from=build /app/dist /app/dist
-COPY --from=build /app/package.json /app/package-lock.json /app/
+COPY --from=builder /app/dist /app/dist
+COPY --from=builder /app/package.json /app/package-lock.json /app/
+COPY --from=builder /app/public /app/public
 
 RUN npm install --only=production
 

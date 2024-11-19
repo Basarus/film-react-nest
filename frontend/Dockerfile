@@ -1,17 +1,19 @@
-FROM node:20-alpine AS build
-
-WORKDIR /app
-
-COPY package.json package-lock.json ./
+FROM node:20-alpine AS builder
+WORKDIR /var/www/app
+COPY package*.json ./
 
 RUN npm install
 
 COPY . .
-
 RUN npm run build
 
-FROM nginx:alpine
+FROM node:20-alpine AS production
+WORKDIR /var/www/app
 
-EXPOSE 80
+COPY --from=builder /var/www/app/package*.json ./
 
-CMD ["nginx", "-g", "daemon off;"]
+RUN npm install
+
+COPY --from=builder /var/www/app/dist ./dist/
+
+CMD ["node", "./dist/main.js"] 
