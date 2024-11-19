@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -9,6 +9,15 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/package.json /app/package-lock.json /app/
+
+RUN npm install --only=production
 
 EXPOSE 3000
 

@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
@@ -8,4 +8,10 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build 
+RUN npm run build
+
+FROM nginx:alpine
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
