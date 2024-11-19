@@ -43,7 +43,7 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin/data
     ports:
-      - 8080:80
+      - 8081:8081
     networks:
       - internal
     depends_on:
