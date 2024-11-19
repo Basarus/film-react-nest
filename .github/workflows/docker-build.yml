@@ -40,7 +40,7 @@ jobs:
         context: ./backend
         file: ./backend/Dockerfile
         push: true
-        tags: ghcr.io/basarus/backend:latest
+        tags: ghcr.io/basarus/film-react-nest:latest
 
     - name: Build and push frontend image
       uses: docker/build-push-action@v3
@@ -48,4 +48,4 @@ jobs:
         context: ./frontend
         file: ./frontend/Dockerfile
         push: true
-        tags: ghcr.io/basarus/frontend:latest
+        tags: ghcr.io/basarus/film-react-nest:latest
