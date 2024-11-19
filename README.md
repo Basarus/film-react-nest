@@ -1,5 +1,7 @@
 # FILM!
 
+Приложение доступно по адресу - http://trifonov.nomorepartiesco.ru/
+
 ## Установка
 
 ### MongoDB
